@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "nx-build-test": "apps/nx-build-test",
+    "nx-build-test-e2e": "apps/nx-build-test-e2e"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "root": "apps/nx-build-test-e2e",
+  "sourceRoot": "apps/nx-build-test-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/nx-build-test-e2e/cypress.json",
+        "devServerTarget": "nx-build-test:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "nx-build-test:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/nx-build-test-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["nx-build-test"]
+}

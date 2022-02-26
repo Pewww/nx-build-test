@@ -1,0 +1,73 @@
+{
+  "root": "apps/nx-build-test",
+  "sourceRoot": "apps/nx-build-test/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/nx-build-test",
+        "index": "apps/nx-build-test/src/index.html",
+        "baseHref": "/",
+        "main": "apps/nx-build-test/src/main.tsx",
+        "polyfills": "apps/nx-build-test/src/polyfills.ts",
+        "tsConfig": "apps/nx-build-test/tsconfig.app.json",
+        "assets": [
+          "apps/nx-build-test/src/favicon.ico",
+          "apps/nx-build-test/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/nx-build-test/src/environments/environment.ts",
+              "with": "apps/nx-build-test/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "nx-build-test:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "nx-build-test:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/nx-build-test/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/nx-build-test"],
+      "options": {
+        "jestConfig": "apps/nx-build-test/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
